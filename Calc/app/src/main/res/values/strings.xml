@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">Calc</string>
+    <string name="app_name">Calculator</string>
+    <string name="clear_button">C</string>
+    <string name="number_7_button">7</string>
+    <string name="number_4_button">4</string>
+    <string name="number_1_button">1</string>
+    <string name="number_0_button">0</string>
+    <string name="divide_button">/</string>
+    <string name="number_8_button">8</string>
+    <string name="number_5_button">5</string>
+    <string name="number_2_button">2</string>
+    <string name="comma_button">.</string>
+    <string name="multiply_button">*</string>
+    <string name="number_9_button">9</string>
+    <string name="number_6_button">6</string>
+    <string name="number_3_button">3</string>
+    <string name="sign_button">+/-</string>
+    <string name="subtract_button">-</string>
+    <string name="add_button">+</string>
+    <string name="parenthethis_button">()</string>
+    <string name="eqv_button">=</string>
+    <string name="delete_button"><![CDATA[<-]]></string>
 </resources>
