@@ -31,13 +31,13 @@ public final class CalculatorActivity extends Activity implements View.OnClickLi
     private TextView result;
     private String KEY_LEXEM = "lexem";
     private String KEY_TEXTVIEW = "textview";
-
+    private String COMAFLAG = "comaFlag";
     {
         wrongFormat = new RuntimeException("Неправильный формат.");
         lexem = new StringBuilder();
     }
 
-    void onClickListener(int[] ids) {
+    void arrayElementsSetOnClickListener(int[] ids) {
         for (int a : ids) {
             findViewById(a).setOnClickListener(this);
         }
@@ -47,34 +47,27 @@ public final class CalculatorActivity extends Activity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
-        onClickListener(numbersIds);
-        onClickListener(binOpId);
-        onClickListener(new int[]{R.id.clear, R.id.coma, R.id.eqv, R.id.sign, R.id.parenthessis, R.id.del});
+        arrayElementsSetOnClickListener(numbersIds);
+        arrayElementsSetOnClickListener(binOpId);
+        arrayElementsSetOnClickListener(new int[]{R.id.clear, R.id.coma, R.id.eqv, R.id.sign, R.id.parenthessis, R.id.del});
 
 
         result = (TextView) findViewById(R.id.result);
         result.setTextColor(Color.BLUE);
         result.setTextSize(TEXTSIZE);
         if (savedInstanceState != null) {
-            lexem = (StringBuilder) savedInstanceState.get(KEY_LEXEM);
+            lexem = new StringBuilder((String) savedInstanceState.get(KEY_LEXEM));
             result.setText((String) savedInstanceState.get(KEY_TEXTVIEW));
+            comaFlag = (boolean) savedInstanceState.get(COMAFLAG);
             lastToken.update(lexem);
-            if (lexem.length() > 0) {
-                int i = lexem.length() - 1;
-                while (i >= 0 && (Character.isDigit(lexem.charAt(i)) || lexem.charAt(i) == '.')) {
-                    if (lexem.charAt(i) == '.') {
-                        comaFlag = true;
-                    }
-                    i--;
-                }
-            }
         }
     }
 
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putCharSequence(KEY_LEXEM, lexem);
-        outState.putCharSequence(KEY_TEXTVIEW, result.getText());
+        outState.putCharSequence(KEY_LEXEM, lexem.toString());
+        outState.putCharSequence(KEY_TEXTVIEW, result.getText().toString());
+        outState.putBoolean(COMAFLAG, comaFlag);
     }
 
 
